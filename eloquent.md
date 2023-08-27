@@ -898,6 +898,9 @@ If you would like to perform multiple "upserts" in a single query, then you shou
 > **Warning**  
 > All databases except SQL Server require the columns in the second argument of the `upsert` method to have a "primary" or "unique" index. In addition, the MySQL database driver ignores the second argument of the `upsert` method and always uses the "primary" and "unique" indexes of the table to detect existing records.
 
+> **Warning**  
+> When doing a large number of upserts, you may be better suited to use `DB::upsert()` and setting `DB::unsetEventDispatcher()` to prevent the model events from being dispatched on each upsert causing a memory leak.
+
 <a name="deleting-models"></a>
 ## Deleting Models
 
